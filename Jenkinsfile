@@ -14,8 +14,7 @@ pipeline {
         stage('Build Docker image') {
             agent {
                 docker { 
-                    image 'python' 
-                    image 'docker'
+                    image 'python'
                 }
             }
             steps {
