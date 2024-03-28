@@ -15,7 +15,7 @@ pipeline {
             agent {
                 docker { 
                     image 'python'
-                    args 'C:\ProgramData\Jenkins\.jenkins\workspace\docker_py1@2'
+                    args '-v /var/jenkins_home/workspace:/workspace'
                 }
             }
             steps {
