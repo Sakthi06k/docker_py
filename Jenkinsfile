@@ -35,7 +35,10 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                bat 'node --version'
+                script{
+            docker.image('python').inside {
+            bat "sakthi06k"
+        }
             }
         }
     }
