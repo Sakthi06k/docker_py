@@ -21,7 +21,8 @@ pipeline {
             steps {
                 script {
                     // Build Docker image using the Dockerfile in the cloned repository
-                    def dockerImage = docker.build('myimage', '-t myimage:latest .')
+                    // def dockerImage = docker.build('myimage', '-t myimage:latest .')
+                    bat "docker build -t python-app ."
                 }
             }
         }
