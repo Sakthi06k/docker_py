@@ -31,16 +31,44 @@
 //     }
 // }
 pipeline {
-    agent { dockerfile true }
+    agent any
+
     stages {
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-              script{
-            docker.image('python').inside {
-            bat "sakthi06k"
+                script {
+                    dockerImage = docker.build("my-docker-image")
+                }
+            }
         }
-              }
+
+        stage('Run Docker Image') {
+            steps {
+                script {
+                    dockerImage.run()
+                }
+            }
+        }
+
+        stage('Execute Commands in Docker Image') {
+            steps {
+                script {
+                    dockerImage.inside {
+                        bat 'ls -al'
+                        bat 'pwd'
+                        bat 'echo "Executing commands inside Docker container"'
+                    }
+                }
+            }
         }
     }
-}
+
+    post {
+        always {
+            // Clean up after execution
+            cleanWs()
+            dockerImage.stop()
+            dockerImage.remove()
+        }
+    }
 }
