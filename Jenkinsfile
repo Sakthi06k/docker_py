@@ -15,6 +15,7 @@ pipeline {
             agent {
                 docker { 
                     image 'python'
+                     args '-v $PWD:/workspace'
                 }
             }
             steps {
