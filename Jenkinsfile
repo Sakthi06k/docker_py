@@ -69,7 +69,7 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    dockerImage.run('-d -p 5000:5000') // Example port mapping
+                    dockerImage.run()
                 }
             }
         }
@@ -78,7 +78,7 @@ pipeline {
             steps {
                 script {
                     dockerImage.inside {
-                        bat 'echo "Executing commands inside Docker container"'
+                        sh 'echo "Executing commands inside Docker container"'
                     }
                 }
             }
