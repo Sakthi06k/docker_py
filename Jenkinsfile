@@ -21,6 +21,39 @@
 //         }
 //     }
 // }
+//---------------------
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage('Build Docker Image') {
+//             steps {
+//                 script {
+//                     dockerImage = docker.build("python-img")
+//                 }
+//             }
+//         }
+
+//         stage('Run Docker Image') {
+//             steps {
+//                 script {
+//                     dockerImage.run()
+//                 }
+//             }
+//         }
+
+//         stage('Execute Commands in Docker Image') {
+//             steps {
+//                 script {
+//                     dockerImage.inside {
+//                         bat 'echo "Executing commands inside Docker container"'
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+//----------------------
 pipeline {
     agent any
 
@@ -36,7 +69,7 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    dockerImage.run()
+                    dockerImage.run('-d -p 5000:5000') // Example port mapping
                 }
             }
         }
