@@ -78,7 +78,7 @@ pipeline {
             steps {
                 script {
                     dockerImage.inside {
-                        sh 'echo "Executing commands inside Docker container"'
+                        bat 'docker --version'
                     }
                 }
             }
