@@ -54,6 +54,8 @@
 //     }
 // }
 //----------------------
+def dockerImage // declaring dockerImage globally
+
 pipeline {
     agent any
 
