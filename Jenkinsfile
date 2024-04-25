@@ -72,14 +72,7 @@ pipeline {
             steps {
                 script {
                     dockerImage.run()
-                }
-            }
-        }
-
-        stage('Execute Commands in Docker Image') {
-            steps {
-                script {
-                    dockerImage.inside {
+                  dockerImage.inside {
                         bat 'docker --version'
                     }
                 }
